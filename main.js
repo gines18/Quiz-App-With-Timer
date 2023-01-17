@@ -41,4 +41,21 @@ let questions = [
       answer: "It declares an array and multiplies each element by 2"
     }
   ];
+
+  let timeLimit = 60;
+
+  let intervalId;
+
+function startQuiz() {
+  let time = timeLimit;
+  document.getElementById("time").innerHTML = time;
+  intervalId = setInterval(function() {
+    time--;
+    document.getElementById("time").innerHTML = time;
+    if (time === 0) {
+      clearInterval(intervalId);
+      endQuiz();
+    }
+  }, 1000);
+}
   
