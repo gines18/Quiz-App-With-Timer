@@ -90,3 +90,48 @@ function displayQuestion() {
     }
   }
   
+
+  function endQuiz() {
+    clearInterval(intervalId);
+    document.getElementById("questions").classList.add("hide");
+    document.getElementById("end-screen").classList.remove("hide");
+    document.getElementById("final-score").innerHTML = timeLimit;
+  }
+  
+  document.getElementById("submit").addEventListener("click", function() {
+      let initials = document.getElementById("initials").value;
+      let score = {
+        name: initials,
+        score: timeLimit
+      };
+      let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+      highScores.push(score);
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+      window.location.href = "highscores.html";
+  });
+
+  function endQuiz() {
+    clearInterval(intervalId);
+    document.getElementById("questions").classList.add("hide");
+    document.getElementById("end-screen").classList.remove("hide");
+    document.getElementById("final-score").innerHTML = timeLimit;
+  }
+  
+  document.getElementById("submit").addEventListener("click", function() {
+      let initials = document.getElementById("initials").value;
+      let score = {
+        name: initials,
+        score: timeLimit
+      };
+      let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+      highScores.push(score);
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+      window.location.href = "highscores.html";
+  });
+
+  document.getElementById("start").addEventListener("click", function() {
+    document.getElementById("start-screen").classList.add("hide");
+    document.getElementById("questions").classList.remove("hide");
+    startQuiz();
+    displayQuestion();
+  });
