@@ -1,3 +1,6 @@
+
+let currentQuestion = 0;
+
 let questions = [
     {
       question: "What is the correct syntax for declaring a variable in JavaScript?",
@@ -58,4 +61,32 @@ function startQuiz() {
     }
   }, 1000);
 }
+
+function displayQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById("question-title").innerHTML = question.question;
+    let choices = "";
+    for (let i = 0; i < question.options.length; i++) {
+      choices += `<button onclick="checkAnswer('${question.options[i]}')">${question.options[i]}</button>`;
+    }
+    document.getElementById("choices").innerHTML = choices;
+  }
+
+  function checkAnswer(answer) {
+    if (answer === questions[currentQuestion].answer) {
+      document.getElementById("feedback").innerHTML = "Correct!";
+      currentQuestion++;
+      if (currentQuestion === questions.length) {
+        endQuiz();
+      } else {
+        displayQuestion();
+      }
+    } else {
+      document.getElementById("feedback").innerHTML = "Wrong!";
+      timeLimit -= 10;
+      // Using the setInterval function to update the time left
+      clearInterval(intervalId);
+      startQuiz();
+    }
+  }
   
