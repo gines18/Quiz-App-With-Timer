@@ -1,3 +1,4 @@
+const feedbackDiv = document.getElementById("feedback");
 let currentQuestion = 0;
 
 let questions = [
@@ -54,6 +55,7 @@ function startQuiz() {
 }
 
 function displayQuestion() {
+  feedbackDiv.classList.add("hide");
   let question = questions[currentQuestion];
   document.getElementById("question-title").innerHTML = question.question;
   let choices = "";
@@ -64,16 +66,21 @@ function displayQuestion() {
 }
 
 function checkAnswer(answer) {
+  feedbackDiv.innerHTML = "";
+  feedbackDiv.classList.remove("hide");
   if (answer === questions[currentQuestion].answer) {
-    document.getElementById("feedback").innerHTML = "Correct!";
+    feedbackDiv.innerHTML = "Correct!";
     currentQuestion++;
-    if (currentQuestion === questions.length) {
-      endQuiz();
-    } else {
-      displayQuestion();
-    }
+    setTimeout(function () {
+      if (currentQuestion === questions.length) {
+        endQuiz();
+      } else {
+        displayQuestion();
+      }
+    }, 500);
   } else {
-    document.getElementById("feedback").innerHTML = "Wrong!";
+    //feedbackDiv.classList.remove("hide");
+    feedbackDiv.innerHTML = "Wrong!";
     timeLimit -= 10;
     // Using the setInterval function to update the time left
     clearInterval(intervalId);
