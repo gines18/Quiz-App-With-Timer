@@ -1,4 +1,4 @@
-const feedbackDiv = document.getElementById("feedback");
+let feedbackDiv = document.getElementById("feedback");
 let currentQuestion = 0;
 
 let questions = [
@@ -79,7 +79,7 @@ function checkAnswer(answer) {
       }
     }, 500);
   } else {
-    //feedbackDiv.classList.remove("hide");
+ 
     feedbackDiv.innerHTML = "Wrong!";
     timeLimit -= 10;
     // Using the setInterval function to update the time left
@@ -92,6 +92,7 @@ function endQuiz() {
   clearInterval(intervalId);
   document.getElementById("questions").classList.add("hide");
   document.getElementById("end-screen").classList.remove("hide");
+  feedbackDiv.classList.add("hide");
   document.getElementById("final-score").innerHTML = timeLimit;
 }
 
@@ -113,3 +114,5 @@ document.getElementById("start").addEventListener("click", function () {
   startQuiz();
   displayQuestion();
 });
+
+

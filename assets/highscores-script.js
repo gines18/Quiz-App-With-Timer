@@ -1,13 +1,14 @@
-const highscoresList = document.getElementById("highscores");
-
-
-const data = JSON.parse(localStorage.getItem("highScores"));
-
+let highscoresList = document.getElementById("highscores");
+let data = JSON.parse(localStorage.getItem("highScores"));
 for (let index = 0; index < data.length; index++) {
-
-    const hsListItem = document.createElement("li");
+    let hsListItem = document.createElement("li");
     hsListItem.innerText = data[index].name +" - "+ data[index].score;
-
+    
     highscoresList.append(hsListItem);
+
+    let clearBtn = document.getElementById("clear");
+    clearBtn.addEventListener("click", function(){
+    hsListItem.style.display = "none";
+});
     
 }
