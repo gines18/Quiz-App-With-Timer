@@ -38,9 +38,9 @@ let questions = [
 ];
 
 let timeLimit = 60;
-
 let intervalId;
 
+//Start quiz
 function startQuiz() {
   let time = timeLimit;
   document.getElementById("time").innerHTML = time;
@@ -65,6 +65,7 @@ function displayQuestion() {
   document.getElementById("choices").innerHTML = choices;
 }
 
+//Inform user about good or wrong choice
 function checkAnswer(answer) {
   feedbackDiv.innerHTML = "";
   feedbackDiv.classList.remove("hide");
@@ -87,7 +88,7 @@ function checkAnswer(answer) {
     startQuiz();
   }
 }
-
+//End quiz
 function endQuiz() {
   clearInterval(intervalId);
   document.getElementById("questions").classList.add("hide");
@@ -95,7 +96,7 @@ function endQuiz() {
   feedbackDiv.classList.add("hide");
   document.getElementById("final-score").innerHTML = timeLimit;
 }
-
+//Set user initials and score
 document.getElementById("submit").addEventListener("click", function () {
   let initials = document.getElementById("initials").value;
   let score = {
@@ -108,6 +109,7 @@ document.getElementById("submit").addEventListener("click", function () {
   window.location.href = "highscores.html";
 });
 
+//Restart quiz 
 document.getElementById("start").addEventListener("click", function () {
   document.getElementById("start-screen").classList.add("hide");
   document.getElementById("questions").classList.remove("hide");
